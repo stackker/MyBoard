@@ -31,6 +31,11 @@ function enable(id) {
   $('#'+id).prop("disabled", false)
 }
 
+function inputHasSomeText(id) {
+  return (getInputValue(id)) !== ''
+  // return $(trim(getInputValue(id))) !== ''
+}
+
 function todaysDateString() {
   return new Date().toISOString().substring(0,10)
 }
@@ -67,6 +72,12 @@ function postButtonPressed() {
 
 }
 
+function setButtonStatus(checkId,actionId) {
+  if (inputHasSomeText(checkId) )  enable(actionId)
+  else disable(actionId)
+ 
+}
+
 //---- server interaction
 function postMessageToServerAndUpdatePage(message) {
     $.ajax({
@@ -94,9 +105,10 @@ function updateMessagesFromServer() {
      })
 }
 
-// $(document).ready(function() {
-//   updateMessagesFromServer()
-// })
+$(document).ready(function() {
+    setButtonStatus("messageText","postMessageButton")
+  // updateMessagesFromServer()
+})
 
 // some test data lying around
 testMessages = [
