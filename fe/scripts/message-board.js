@@ -107,7 +107,7 @@ function updateMessagesFromServer() {
 
 $(document).ready(function() {
     setButtonStatus("messageText","postMessageButton")
-  // updateMessagesFromServer()
+    updateMessagesFromServer()
 })
 
 // some test data lying around
