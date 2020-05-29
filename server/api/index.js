@@ -1,22 +1,23 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+const setupV2Routes = require('./setupV2Routes')
+// const database = require('../database/inMemory')
+const database = require('../database/inMongo')
 
 const Router = express.Router
-
-const database = require('../database')
 
 const setupV1Routes = (apiRouter) => {
 
   // Controller Functions
   function findAllPosts(request, response) {
-    let allPosts = database.findAllPosts()
-    response.send(allPosts)
+    database.findAllPosts()
+      .then((posts) => response.send(posts))
+      .catch((error) => response.send(error))
   }
 
   function addNewPost(request, response) {
-    console.log('saving post', request.body)
     database.addPost(request.body)
-    response.sendStatus(200)
+    .then(() => response.sendStatus(200))
+    .catch((error) => response.send(error))
   }
 
   // Routing
@@ -26,33 +27,6 @@ const setupV1Routes = (apiRouter) => {
 
   apiRouter.use('/v1', v1Router)
 };
-
-const setupV2Routes = (apiRouter) => {
-
-  // Controller Functions
-  function findAllPosts(request, response) {
-    let allPosts = database.findAllPosts()
-    response.sendStatus(allPosts)
-  }
-
-  function addNewPost(request, response) {
-    console.log('saving post', request.body)
-    database.addPost(request.body)
-    response.sendStatus(200)
-  }
-
-  // Middleware
-  const textParser = bodyParser.text()
-
-  // Routing
-  const router = Router()
-  router.get('/posts', findAllPosts)
-  router.post('/addPost', textParser, addNewPost)
-
-  apiRouter.use('/v2', router)
-};
-
-
 
 const apiRouter = Router()
 setupV1Routes(apiRouter)

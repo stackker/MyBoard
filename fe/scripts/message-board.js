@@ -44,7 +44,7 @@ function todaysDateString() {
 exampleMessage = { messageText: "Hi, this is a test message 0", author: "Tony Enerson", messageDate: "2020-05-19"}
 
 function addMessageToPage(message) {
-    let messageHtml = `<div class="message">${message.messageText}<div class="message-footer">${message.author}: ${message.messageDate}</div></div>`
+    let messageHtml = `<div class="message">${message._id}, ${message.messageText}<div class="message-footer">${message.author}: ${message.messageDate}</div></div>`
     appendHtml('messagesArea', messageHtml)
 }
 
