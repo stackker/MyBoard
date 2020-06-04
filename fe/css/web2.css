@@ -35,12 +35,33 @@ h2 {
     font-weight: 800;
     margin-left: 16px;
 }
+.messagesArea{
+    display:flex;
+
+}
 
 .message {
     margin-left: 32px;
     margin-right: 16px;
     margin-top: 8px;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    justify-content:space-between;
+}
+
+/* Asif code: */
+.reply {
+    margin-left: 32px;
+    margin-right: 16px;
+    margin-top: 1px;
     border-bottom:  1px solid;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    width: auto;
+
 }
 
 .message-footer {
@@ -74,6 +95,20 @@ button {
     font-weight: 700;
     border-style: none;
     border-radius: 50px;
+}
+
+/* Asif code: */
+.buttonss {
+    height: 32px;
+    width: 128px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-weight: 700;
+    border-style: none;
+    border-radius: 50px;
+    /* display: table-cell;
+    vertical-align: middle; */
+    text-align: center;
 }
 
 button:disabled {
