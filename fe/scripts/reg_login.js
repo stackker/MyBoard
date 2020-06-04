@@ -1,4 +1,4 @@
-
+// import index  from "./index.js"
 function cleanOutElement(id) {
   $('#'+id).html('')
 }
@@ -77,8 +77,39 @@ function setButtonStatus(checkId,actionId) {
   else disable(actionId)
  
 }
-
+function buttonLoginClicked() {
+  alert("login Button Clicked")
+}
+function buttonRegisterClick() {
+  // alert("rRegister Button clicked")
+  let registeredUser = {
+    _id : getInputValue('idEmail'),
+    fname:getInputValue('idFname'),
+    lname:getInputValue('idLname'),
+    createdAt:new Date(),
+    userInfo_base64:btoa(getInputValue('idEmail')+":"+getInputValue("idPass"))
+  }
+  // console.log(registeredUser)
+  postUserToServerReturnLogin(registeredUser)
+}
 //---- server interaction
+function postUserToServerReturnLogin(user){
+  $.ajax({
+    url:'/api/v1/addUser',
+    type:"POST",
+    data:JSON.stringify(user),
+    contentType:"application/json; charset=utf-8",
+    success: function() {
+        console.log('In post callback')
+        updateMessagesFromServer()
+    },
+    fail: function(error) {
+        // what do we do here?
+    }
+})
+
+}
+
 function postMessageToServerAndUpdatePage(message) {
     $.ajax({
         url:'/api/v1/addPost',
@@ -119,5 +150,3 @@ testMessages = [
     { messageText: "Hi, this is a test message 3", author: "Tony Enerson", messageDate: "2020-05-21"},
     { messageText: "Hi, this is a test message 4", author: "Tony Enerson", messageDate: "2020-05-22"}
 ]
-
-

@@ -20,10 +20,20 @@ const setupV1Routes = (apiRouter) => {
     .catch((error) => response.send(error))
   }
 
+  //----------
+  function addNewUser(request, response) {
+    database.addUser(request.body)
+    .then(() => response.sendStatus(200))
+    .catch((error) => response.send(error))
+  }
+
+  //----------
+
   // Routing
   const v1Router = Router()
   v1Router.get('/posts', findAllPosts)
   v1Router.post('/addPost', addNewPost)
+  v1Router.post('/addUser', addNewUser)
 
   apiRouter.use('/v1', v1Router)
 };
