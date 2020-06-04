@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const api = require('./api')
 
@@ -5,7 +7,7 @@ const app = express()
 
 app.use(express.json())
 app.use('/api', api)
-app.use('/', express.static('../web1'))
+
 app.use('/fe', express.static('../fe'))
 app.use('/day3', express.static('../web3'))
 

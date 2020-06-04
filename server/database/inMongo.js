@@ -57,11 +57,22 @@ function close() {
     return client.close()
   })
 }
+//_______________
 
+function addUser(user) {
+  return connect()
+    .then((db) => {
+      let messages = db.collection('users')
+      return messages.insertOne(user)
+        .then((insertResult) => messages.findOne({_id: insertResult.insertedId}))
+    })
+}
+//_______________
 module.exports = {
   clear,
   addPost,
   findAllPosts,
   updatePost,
-  close
+  close,
+  addUser
 }
