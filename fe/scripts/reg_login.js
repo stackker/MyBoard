@@ -92,6 +92,19 @@ function buttonRegisterClick() {
   // console.log(registeredUser)
   postUserToServerReturnLogin(registeredUser)
 }
+
+function clearRegisterInputs(){
+  debugger
+  let registeredUser = {
+    _id : setInputValue('idEmail',""),
+    fname:setInputValue('idFname',""),
+    lname:setInputValue('idLname',""),
+    password:setInputValue('idPass',""),
+    
+  }
+  
+}
+
 //---- server interaction
 function postUserToServerReturnLogin(user){
   $.ajax({
@@ -101,7 +114,8 @@ function postUserToServerReturnLogin(user){
     contentType:"application/json; charset=utf-8",
     success: function() {
         console.log('In post callback')
-        updateMessagesFromServer()
+        clearRegisterInputs()
+        // updateMessagesFromServer()
     },
     fail: function(error) {
         // what do we do here?
