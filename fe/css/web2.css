@@ -22,6 +22,16 @@ body {
     font-weight: 700;
 }
 
+#login {
+position: absolute;
+}
+
+#labelSearch {
+
+}
+
+
+
 h1 {
     color: #1e90b4;
     font-size: 20px;
@@ -36,19 +46,29 @@ h2 {
     margin-left: 16px;
 }
 .messagesArea{
-    display:flex;
-
+    display:flex; 
 }
 
+/* Asif code: */
 .message {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-left: 32px;
-    margin-right: 16px;
-    margin-top: 8px;
+    margin-right: 32px;
+    margin-top: 32px;
     border-bottom: 1px solid;
     border-top: 1px solid;
     border-left: 1px solid;
     border-right: 1px solid;
+    border-radius: 9px;
     justify-content:space-between;
+}
+
+#replyContainer {
+    margin-top: 15px;
+    margin-left: 15px; 
 }
 
 /* Asif code: */
@@ -61,7 +81,6 @@ h2 {
     border-left: 1px solid;
     border-right: 1px solid;
     width: auto;
-
 }
 
 .message-footer {
@@ -76,6 +95,8 @@ h2 {
 }
 
 .entry-form-footer {
+    padding-right: 10px;
+    padding-bottom: 10px;
     margin-top: 8px;
     text-align: right;
 }
@@ -93,30 +114,95 @@ button {
     background: #9ccb3b;
     color: #ffffff;
     font-weight: 700;
-    border-style: none;
+    border-style: double;
     border-radius: 50px;
 }
 
+.button:hover {
+    background-color: green;
+    color: white;
+  }
+
 /* Asif code: */
 .buttonss {
+    height: 20px;
+    width: 50px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-size: x-small;
+    font-weight: 10;
+    border-style: double;
+    border-radius: 50px;
+    /* display: table-cell;
+    vertical-align: middle; */
+    text-align: center;
+    /* position: relative;
+    left: 550; */
+}
+
+.buttonss:hover {
+    background-color: green;
+    color: white;
+  }
+
+#replyMessageButton {
     height: 32px;
     width: 128px;
     background: #9ccb3b;
     color: #ffffff;
     font-weight: 700;
-    border-style: none;
+    border-style: double;
     border-radius: 50px;
-    /* display: table-cell;
-    vertical-align: middle; */
     text-align: center;
 }
 
-button:disabled {
+#replyMessageButton:hover{
+    background-color: green;
+    color: white;
+  }
+
+#replyMessageButton:disabled {
     height: 32px;
     width: 128px;
     background: #aaaaaa;
     color: #eeeeee;
     font-weight: 700;
-    border-style: none;
+    border-style: double;
     border-radius: 50px;
 }
+
+#postMessageButton {
+    height: 32px;
+    width: 128px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+    text-align: center;
+}
+
+#postMessageButton:hover{
+    background-color: green;
+    color: white;
+  }
+
+#postMessageButton:disabled {
+    height: 32px;
+    width: 128px;
+    background: #aaaaaa;
+    color: #eeeeee;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+}
+
+/* button:disabled {
+    height: 32px;
+    width: 128px;
+    background: #aaaaaa;
+    color: #eeeeee;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+} */
