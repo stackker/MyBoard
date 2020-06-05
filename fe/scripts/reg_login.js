@@ -94,8 +94,7 @@ function buttonRegisterClick() {
 }
 
 function clearRegisterInputs(){
-  debugger
-  let registeredUser = {
+    let registeredUser = {
     _id : setInputValue('idEmail',""),
     fname:setInputValue('idFname',""),
     lname:setInputValue('idLname',""),

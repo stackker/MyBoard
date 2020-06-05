@@ -1,3 +1,5 @@
+
+require('dotenv').config()
 let chai = require('chai')
 let db = require('../database/inMongo')
 // let db = require('../database/inMemory')
@@ -42,27 +44,35 @@ describe('Database', (done)=> {
     .catch(done)
   })
 
-  it('should update a post', (done) => {
-    const message = {
-      messageText: 'Your very first message',
-      author: 'Anonymous',
-      messageDate: new Date().toISOString().substring(0, 10),
-    }
+  // it('should update a post', (done) => {
+  //   const message = {
+  //     messageText: 'Your very first message',
+  //     author: 'Anonymous',
+  //     messageDate: new Date().toISOString().substring(0, 10),
+  //   }
     
-    db.addPost(message)
-    .then((addedMessage) => {
-        let updatedMessage = { ...addedMessage }
-        updatedMessage.messageText = 'My updated message'
-        return db.updatePost(updatedMessage)
-    })
-    .then(() => db.findAllPosts())
-    .then((posts) => {
-        expect(posts).to.be.an('array')
-        expect(posts.length).to.equal(1)
-        expect(posts[0].messageText).to.equal('My updated message')
-    })
+  //   db.addPost(message)
+  //   .then((addedMessage) => {
+  //       let updatedMessage = { ...addedMessage }
+  //       updatedMessage.messageText = 'My updated message'
+  //       return db.updatePost(updatedMessage)
+  //   })
+  //   .then(() => db.findAllPosts())
+  //   .then((posts) => {
+  //       expect(posts).to.be.an('array')
+  //       expect(posts.length).to.equal(1)
+  //       expect(posts[0].messageText).to.equal('My updated message')
+  //   })
+  //   .then(done)
+  //   .catch(done)
+  // })
+
+
+  it("should fetch the ID entres",(done) =>{
+    db.getAllID4Message("5eda916c0b10026a78b4f1c2")
+    .then((returnedID)=>{console.log("IDS:",returnedID)})
+     
     .then(done)
     .catch(done)
   })
-
 })

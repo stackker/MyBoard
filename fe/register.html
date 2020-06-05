@@ -1,6 +1,6 @@
   <html>
   <head>
-    <title>Register: MyBoard</title>
+    <title>MyBoard:Register</title>
     <link rel="stylesheet" type="text/css" href="css/web2.css" />
     <script src="scripts/jquery-3.5.1.js"></script>
     <script src="scripts/reg_login.js"></script>
@@ -9,23 +9,24 @@
     <div class="header-bar">
       <img class="header-bar-logo" src="images/EvolveU-logo-white.png" alt="EvolveU logo"/>
       <div class="header-bar-options">
-        <button>Login</button>
+        <button style = "opacity:0.5; cursor:not-allowed">Login</button>
       </div>
     </div>
-     <div>
-        <fieldset>
-          <legend>Personal Info:</legend>
-          <label for="fname">First name:</label>
-          <input type="text" id="idFname" name="fname"><br><br>
-          <label for="lname">Last name:</label>
-          <input type="text" id="idLname" name="lname"><br><br>
-          <label for="email">Email:</label>
-          <input type="email" id="idEmail" name="email"><br><br>
-          <label for="password">Password:</label>
-          <input type="password" id="idPass" name="birthday"><br><br>
-          <button  type="button" 
-                   onclick = "buttonRegisterClick()"
-                   value="Register">Register</button><br><br>
+    <div>
+      <fieldset>
+        <legend>Personal Info:</legend>
+        <label for="fname">First name:</label>
+        <input type="text" id="idFname" name="fname"><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="idLname" name="lname"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="idEmail" name="email"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="idPass" name="birthday"><br><br>
+        <button  type="button" 
+                  onclick = "buttonRegisterClick()"
+                  value="Register">Register</button><span><a href = "./login.html">Login</a></span><br><br>
+        <div class = statusMessage id = RegisterMessage></div> <!--/* place Holder*/ -->
       </fieldset>
     </div>   
    

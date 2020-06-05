@@ -20,6 +20,11 @@ const setupV1Routes = (apiRouter) => {
     .catch((error) => response.send(error))
   }
 
+  function getAllID4Message(request,response) {
+    console.log("BODY:",request.body)
+    database.getAllID4Message(request.body.id) // <<needs work here
+  }
+
   //----------
   function addNewUser(request, response) {
     database.addUser(request.body)

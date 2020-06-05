@@ -64,6 +64,8 @@ function updatePageMessages(messages) {
 
 function getMessageFromForm() {
   return {
+    threadID:"",
+    parentID:"",
     messageText: getInputValue('messageText'),
     author: 'Anonymous',
     messageDate: todaysDateString()
@@ -73,6 +75,8 @@ function getMessageFromForm() {
 // Asif code:
 function getMessageFromReply() {
   return {
+    threadID:"",
+    parentID:"",
     messageText: getInputValue('messageText2'),
     author: 'Anonymous',
     messageDate: todaysDateString()
@@ -107,15 +111,17 @@ function setButtonStatus(checkId, actionId) {
 function replyButtonPressed() {
   //let replyHtml = `<div id="text1"    class="reply">
   let replyMessageID =  "MS" + event.target.id
-  let replyHtml = `<div id=${replyMessageID}  class="reply">
-  <div id="replyContainer"> Your Reply: </div>
-  <textarea id="messageText2" rows="5" columns="80"
-  oninput="setButtonStatus('messageText2','replyMessageButton')"></textarea>
-  <div class="entry-form-footer"> 
-    <button id="replyMessageButton"
-    onclick="replyButtonPosted()"> POST Reply! </button> </div>
-</div>
-</div>`
+  let postReplyMessageID = "PS" +replyMessageID
+   let replyHtml = 
+   `<div id=${replyMessageID}  class="reply">
+      <div id="replyContainer"> Your Reply: </div>
+      <textarea id="messageText2" rows="5" columns="80"
+      oninput="setButtonStatus('messageText2','replyMessageButton')"></textarea>
+      <div class="entry-form-footer"> 
+        <button id="replyMessageButton"
+        onclick="replyButtonPosted()"> POST Reply! </button> </div>
+      </div>
+   </div>`
   appendHtml(replyMessageID, replyHtml)
   setButtonStatus('messageText2', 'replyMessageButton')
 
@@ -126,6 +132,18 @@ function replyButtonPressed() {
 }
 
 //---- server interaction
+
+function getAllID4Message() {
+  $.getJSON('/api/v1/getIDs')
+    .done(function (messageIDs) {
+      console.log(messageIDs)
+    })
+    .fail(function (error) {
+      console.log(error)
+    })
+}
+
+
 function postMessageToServerAndUpdatePage(message) {
   $.ajax({
     url: '/api/v1/addPost',
@@ -134,6 +152,7 @@ function postMessageToServerAndUpdatePage(message) {
     contentType: "application/json; charset=utf-8",
     success: function () {
       console.log('In post callback')
+
       updateMessagesFromServer()
     },
     fail: function (error) {
