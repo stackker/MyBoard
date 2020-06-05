@@ -73,44 +73,52 @@ function getMessageFromForm() {
 // Asif code:
 function getMessageFromReply() {
   return {
-    messageText: getInputValue('reply'),
+    messageText: getInputValue('messageText2'),
     author: 'Anonymous',
     messageDate: todaysDateString()
   }
 }
-
 
 function postButtonPressed() {
   let postedMessage = getMessageFromForm();
   addMessageToPage(postedMessage)
   postMessageToServerAndUpdatePage(postedMessage)
   setInputValue("messageText", "")
+  setButtonStatus("messageText","postMessageButton")
   // cleanOutElement("messageText.value")
+}
 
+function replyButtonPosted() {
+  let postedMessage2 = getMessageFromReply();
+  addMessageToPage(postedMessage2)
+  postMessageToServerAndUpdatePage(postedMessage2)
+  setInputValue("messageText2", "")
+  setButtonStatus("messageText2","replyMessageButton")
+  // cleanOutElement("messageText.value")
 }
 
 function setButtonStatus(checkId, actionId) {
+  // debugger
   if (inputHasSomeText(checkId)) enable(actionId)
   else disable(actionId)
-
 }
 
 // Asif code:
 function replyButtonPressed() {
-  //debugger
- 
   //let replyHtml = `<div id="text1"    class="reply">
   let replyMessageID =  "MS" + event.target.id
   let replyHtml = `<div id=${replyMessageID}  class="reply">
-  <div> Your Reply: </div>
-  <textarea id="messageText" rows="5" columns="80"
-  oninput="setButtonStatus('messageText','postMessageButton')"></textarea>
+  <div id="replyContainer"> Your Reply: </div>
+  <textarea id="messageText2" rows="5" columns="80"
+  oninput="setButtonStatus('messageText2','replyMessageButton')"></textarea>
   <div class="entry-form-footer"> 
     <button id="replyMessageButton"
-    onclick="postButtonPressed()"> POST Reply! </button> </div>
+    onclick="replyButtonPosted()"> POST Reply! </button> </div>
 </div>
 </div>`
   appendHtml(replyMessageID, replyHtml)
+  setButtonStatus('messageText2', 'replyMessageButton')
+
 
   // let repliedMessage = getMessageFromReply();
   // addMessageToPage(repliedMessage)
@@ -145,7 +153,8 @@ function updateMessagesFromServer() {
 }
 
 $(document).ready(function () {
-  setButtonStatus("messageText", "postMessageButton")
+  setButtonStatus('messageText', 'postMessageButton')
+  setButtonStatus('messageText2', 'replyMessageButton')
   updateMessagesFromServer()
 })
 
