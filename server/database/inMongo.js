@@ -33,6 +33,31 @@ function addPost(post) {
       let messages = db.collection('messages')
       return messages.insertOne(post)
         .then((insertResult) => messages.findOne({_id: insertResult.insertedId}))
+        .then((readMessage) => {
+          console.log("messageID:",readMessage)
+          let threadParentID ={ _id:readMessage._id,"threadID":readMessage._id,
+         "parentID":readMessage._id}
+          updateID_OnMessage(threadParentID)  // added Sunil
+         })
+
+    })
+}
+
+function updateID_OnMessage(idDict) {
+  console.log("idDict:", idDict)
+  return connect()
+    .then((db) => db.collection('messages').updateOne(
+      { _id: idDict._id },
+      {$set:
+        {"threadID": idDict.threadID,
+         "parentID": idDict.parentID}
+      },
+      
+      { returnOriginal: false }
+    ))
+    .then((findAndModifyResult) => {findAndModifyResult.value
+    // console.log("findAndModifyResult:",findAndModifyResult.result.nModified)
+   
     })
 }
 
@@ -46,6 +71,7 @@ function updatePost(messageWithNewContent) {
     .then((findAndModifyResult) => findAndModifyResult.value)
 }
 
+
 function findAllPosts() {
   return connect()
     .then((db) => db.collection('messages').find({}).toArray())
@@ -57,6 +83,22 @@ function close() {
     return client.close()
   })
 }
+
+function getAllID4Message(messageID){
+  return connect()
+          .then((db)=>{
+            let messages = db.collection(messages)
+            return messages.findOne({_id:messageID})
+                   .then((row)=>{
+                     const {_id, threadID, parentID}= row;
+                     return {_id:_id, "threadID":threadID, "parentID":parentID}
+                   })
+                   .catch(err=>{console.log(err);
+                                return err})
+
+          })
+}
+
 //_______________
 
 function addUser(user) {
@@ -67,6 +109,8 @@ function addUser(user) {
         .then((insertResult) => messages.findOne({_id: insertResult.insertedId}))
     })
 }
+
+
 //_______________
 module.exports = {
   clear,
@@ -74,5 +118,6 @@ module.exports = {
   findAllPosts,
   updatePost,
   close,
-  addUser
+  addUser,
+  getAllID4Message
 }
