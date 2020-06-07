@@ -5,7 +5,7 @@ body {
 }
 
 .header-bar {
-    padding: 16px;
+    padding: 35px;
     background: #444543;
     color: #ffffff;
 }
@@ -22,15 +22,22 @@ body {
     font-weight: 700;
 }
 
-#login {
-position: absolute;
-}
+/* #login {
+   float: right;
+    position: absolute;
+    right: 10;
+    top: 0;
+} */
 
 #labelSearch {
-
+    position: absolute;
+    right: 800px;
 }
 
-
+#filter {
+    position: absolute;
+    right: 300px;
+}
 
 h1 {
     color: #1e90b4;
@@ -57,7 +64,7 @@ h2 {
     padding-bottom: 10px;
     margin-left: 32px;
     margin-right: 32px;
-    margin-top: 32px;
+    margin-top: 20px;
     border-bottom: 1px solid;
     border-top: 1px solid;
     border-left: 1px solid;
@@ -197,7 +204,7 @@ button {
     border-radius: 50px;
 }
 
-/* button:disabled {
+button:disabled {
     height: 32px;
     width: 128px;
     background: #aaaaaa;
@@ -205,4 +212,21 @@ button {
     font-weight: 700;
     border-style: double;
     border-radius: 50px;
-} */
+}
+
+.loginButtonBoard {
+    height: 32px;
+      width: 128px;
+      background: #9ccb3b;
+      color: #ffffff;
+      font-weight: 700;
+      border-style: double;
+      border-radius: 50px;
+      position: absolute; 
+      right: 20px;
+    }
+  
+  .loginButtonBoard:hover{
+    background-color: green;
+    color: white;
+  }

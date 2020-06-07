@@ -94,14 +94,13 @@ function buttonRegisterClick() {
 }
 
 function clearRegisterInputs(){
-    let registeredUser = {
+  debugger
+  let registeredUser = {
     _id : setInputValue('idEmail',""),
     fname:setInputValue('idFname',""),
     lname:setInputValue('idLname',""),
     password:setInputValue('idPass',""),
-    
   }
-  
 }
 
 //---- server interaction
