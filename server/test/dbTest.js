@@ -69,10 +69,25 @@ describe('Database', (done)=> {
 
 
   it("should fetch the ID entres",(done) =>{
-    db.getAllID4Message("5eda916c0b10026a78b4f1c2")
-    .then((returnedID)=>{console.log("IDS:",returnedID)})
-     
-    .then(done)
-    .catch(done)
+    const message = {
+          messageText: 'Your very first message',
+          author: 'Anonymous',
+          messageDate: new Date().toISOString().substring(0, 10),
+        }
+        
+        db.addPost(message)
+        .then(() => db.findAllPosts())
+        .then((posts) => {
+          console.log("ID:",posts[0]._id)
+          var postID =posts[0]._id;
+          return db.getAllID4Message(postID)
+
+          // //       expect(posts[0].messageText).to.equal('My updated message')
+          // expect(posts[0]._id)
+        })
+        // .catch(err => console.log(err))
+          
+          
+          .then(done)
   })
 })

@@ -57,6 +57,7 @@ function addMessageToPage(message) {
 
 function updatePageMessages(messages) {
   cleanOutElement('messagesArea')
+
   messages.forEach(function (message) {
     addMessageToPage(message)
   })
@@ -73,10 +74,11 @@ function getMessageFromForm() {
 }
 
 // Asif code:
-function getMessageFromReply() {
+function getMessageFromReply(parID) {
+  console.log(parID,getInputValue('messageText2'))
   return {
     threadID:"",
-    parentID:"",
+    parentID:`${parID}`,
     messageText: getInputValue('messageText2'),
     author: 'Anonymous',
     messageDate: todaysDateString()
@@ -85,6 +87,7 @@ function getMessageFromReply() {
 
 function postButtonPressed() {
   let postedMessage = getMessageFromForm();
+  // console.log("PostedMessage:", postedMessage)
   addMessageToPage(postedMessage)
   postMessageToServerAndUpdatePage(postedMessage)
   setInputValue("messageText", "")
@@ -92,10 +95,10 @@ function postButtonPressed() {
   // cleanOutElement("messageText.value")
 }
 
-function replyButtonPosted() {
-  let postedMessage2 = getMessageFromReply();
+async function replyButtonPosted() {
+  let postedMessage2 = getMessageFromReply(event.target.id);
   addMessageToPage(postedMessage2)
-  postMessageToServerAndUpdatePage(postedMessage2)
+  let result = await getIDandPostReply(postedMessage2)
   setInputValue("messageText2", "")
   setButtonStatus("messageText2","replyMessageButton")
   // cleanOutElement("messageText.value")
@@ -108,22 +111,28 @@ function setButtonStatus(checkId, actionId) {
 }
 
 // Asif code:
-function replyButtonPressed() {
+async function replyButtonPressed() {
   //let replyHtml = `<div id="text1"    class="reply">
+  // let messageID = `{id:${(event.target.id).slice(2)}}`
+  let messageID = (event.target.id).slice(2)
+  console.log(`"${messageID}"`)
   let replyMessageID =  "MS" + event.target.id
-  let postReplyMessageID = "PS" +replyMessageID
+  // let postReplyMessageID = "PS" +replyMessageID
+  // let IDsOfParent = await(getAllID4Message(messageID))
+  // console.log("IDofParent:",IDsOfParent);
    let replyHtml = 
    `<div id=${replyMessageID}  class="reply">
       <div id="replyContainer"> Your Reply: </div>
       <textarea id="messageText2" rows="5" columns="80"
-      oninput="setButtonStatus('messageText2','replyMessageButton')"></textarea>
+      oninput="setButtonStatus('messageText2','${messageID}')"></textarea>
       <div class="entry-form-footer"> 
-        <button id="replyMessageButton"
+        <button id= '${messageID}' class = "postReplyButton"
         onclick="replyButtonPosted()"> POST Reply! </button> </div>
       </div>
    </div>`
   appendHtml(replyMessageID, replyHtml)
-  setButtonStatus('messageText2', 'replyMessageButton')
+  setButtonStatus('messageText2', messageID)
+  // setButtonStatus('messageText2', `${messageID}`)
 
 
   // let repliedMessage = getMessageFromReply();
@@ -133,16 +142,44 @@ function replyButtonPressed() {
 
 //---- server interaction
 
-function getAllID4Message() {
-  $.getJSON('/api/v1/getIDs')
-    .done(function (messageIDs) {
-      console.log(messageIDs)
-    })
-    .fail(function (error) {
-      console.log(error)
-    })
+function getIDandPostReply(message) {
+  $.ajax({
+    url: '/api/v1//postReply',
+    type: "POST",
+    data: JSON.stringify(message),
+    contentType: "application/json; charset=utf-8",
+    success: function () {
+      console.log('In post callback')
+
+      updateMessagesFromServer()
+    },
+    fail: function (error) {
+      // what do we do here?
+    }
+  })
 }
 
+
+
+//>>> Not used---------------
+function getAllID4Message(messageID) {
+  // $.getJSON('/api/v1/getIDs')
+  $.ajax({
+    url: '/api/v1/getIDs',
+    type: "POST",
+    data: JSON.stringify(messageID),
+    contentType: "application/json; charset=utf-8",
+    success: function () {
+      console.log('In post callback')
+
+      // updateMessagesFromServer()
+    },
+    fail: function (error) {
+      // what do we do here?
+    }
+  })
+}
+//<<<<Not used---------------
 
 function postMessageToServerAndUpdatePage(message) {
   $.ajax({
@@ -173,7 +210,7 @@ function updateMessagesFromServer() {
 
 $(document).ready(function () {
   setButtonStatus('messageText', 'postMessageButton')
-  setButtonStatus('messageText2', 'replyMessageButton')
+  // setButtonStatus('messageText2', 'replyMessageButton') // ID not avlb at this time
   updateMessagesFromServer()
 })
 
