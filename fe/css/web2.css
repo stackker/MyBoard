@@ -22,6 +22,22 @@ body {
     font-weight: 700;
 }
 
+.menu {
+    display:flex;
+    flex-direction: row;
+    /* flex:none */
+    justify-content:space-evenly;
+    align-content: center;
+}
+
+
+#login {
+position: absolute;
+}
+
+/* #labelSearch {
+
+} */
 /* #login {
    float: right;
     position: absolute;
@@ -118,7 +134,7 @@ textarea {
 button {
     height: 32px;
     width: 128px;
-    background: #9ccb3b;
+   background: #9ccb3b; 
     color: #ffffff;
     font-weight: 700;
     border-style: double;
@@ -152,7 +168,8 @@ button {
     color: white;
   }
 
-#replyMessageButton {
+/* #replyMessageButton { */
+.postReplyButton {
     height: 32px;
     width: 128px;
     background: #9ccb3b;
@@ -163,12 +180,14 @@ button {
     text-align: center;
 }
 
-#replyMessageButton:hover{
+/* #replyMessageButton:hover{ */
+.postReplyButton:hover{
     background-color: green;
     color: white;
   }
 
-#replyMessageButton:disabled {
+/* #replyMessageButton:disabled { */
+.postReplyButton:disabled {
     height: 32px;
     width: 128px;
     background: #aaaaaa;
@@ -177,6 +196,7 @@ button {
     border-style: double;
     border-radius: 50px;
 }
+
 
 #postMessageButton {
     height: 32px;
@@ -188,15 +208,15 @@ button {
     border-radius: 50px;
     text-align: center;
 }
-
 #postMessageButton:hover{
     background-color: green;
     color: white;
   }
 
 #postMessageButton:disabled {
+
     height: 32px;
-    width: 128px;
+    width: 128px; 
     background: #aaaaaa;
     color: #eeeeee;
     font-weight: 700;
@@ -212,7 +232,9 @@ button:disabled {
     font-weight: 700;
     border-style: double;
     border-radius: 50px;
+    cursor: false;
 }
+
 
 .loginButtonBoard {
     height: 32px;
