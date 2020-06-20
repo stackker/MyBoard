@@ -79,7 +79,8 @@ function setButtonStatus(checkId, actionId) {
   if (inputHasSomeText(checkId)) enable(actionId);
   else disable(actionId);
 }
-function buttonLoginClicked() {
+function buttonLoginClick() {
+  // alert("Login Button Clicked")
   let loggedInUser =   
      btoa(
         getInputValue("idEmail") + ":" + getInputValue("idPass")

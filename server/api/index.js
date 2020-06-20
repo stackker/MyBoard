@@ -10,7 +10,9 @@ const setupV1Routes = (apiRouter) => {
   // Controller Functions
   function findAllPosts(request, response) {
     database.findAllPosts()
-      .then((posts) => response.send(posts))
+      .then((posts) => {
+        return response.send(posts);
+      })
       .catch((error) => response.send(error))
   }
 
@@ -21,11 +23,13 @@ const setupV1Routes = (apiRouter) => {
   }
 
   function addNewReply(request, response) {
-    console.log("addNewReply:",request.body)
+    // console.log("addNewReply:",request.body)
     database.processReply(request.body)
     .then(() => response.sendStatus(200))
     .catch((error) => response.send(error))
   }
+
+
 
 
 //----not working-----maybe not needed >>>

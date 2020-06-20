@@ -1,37 +1,38 @@
   <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/web2.css" />
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"">
     <script src="scripts/jquery-3.5.1.js"></script>
     <script src="scripts/message-board.js"></script>
   </head>
   <body>
     <div class="header-bar">
+        <button class="loginButtonBoard"><a href="./login.html">Login</a></button>
+         
       <img class="header-bar-logo" src="images/EvolveU-logo-white.png" alt="EvolveU logo"/>
-      <div class="header-bar-options">
-       <button>Login</button>
-      </div>
       
-      <br></br>
-      <div class="menu">
-        <div>
+      <div class="header-bar-options">
           <label id="labelSearch">Search in Message:
-            <input></input>
-          </label>
-        </div>
-        <div>
-          <label>Filter by Assigned to:
-            <select > 
-              <option value="1">Link from users Table</option>
-              <option value="2">BMW</option>
-            </select>
-          </label>
-        </div>
+              <input></input>
+            </label>
+            <span>
+        <label id="filter">Filter by Assigned to:
+          <select > 
+            <option value="1">Link from users Table</option>
+            <option value="2">BMW</option>
+          </select>
+        </label>
+      </span>
+       
+        <!-- <button>Login</button> -->
+
       </div>
     </div>
     
-
-    <h2>Message Board</h2>
+<br>
+    <h2>Message Board</h2>`
     <div id="messagesArea">
       <div class="message">
         <div>Message text goes here. This is a lot of message text that I am using to demonstrate that values can wrap </div> 
@@ -42,7 +43,7 @@
         </div>
       </div>
     </div>
-
+    <br>
     <div>
       <h2>Enter New Message</h2>
       <div class="entry-form">

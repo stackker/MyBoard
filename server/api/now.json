@@ -1,0 +1,7 @@
+{
+  "name": "MyBoard",
+  "version": 1,
+  "builds": [
+    { "src": "*", "use": "@now/static"}
+  ]
+}

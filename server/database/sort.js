@@ -15,14 +15,15 @@ const agg = [
     }, {}
   ];
   
-  MongoClient.connect(
+ MongoClient.connect(
     'process.env.MONGO_CONNECTION_STRING',
     { useNewUrlParser: true, useUnifiedTopology: true },
     function(connectErr, client) {
-      assert.equal(null, connectErr);
+      // assert.equal(null, connectErr);
       const coll = client.db('messagesDB').collection('messages');
       coll.aggregate(agg, (cmdErr, result) => {
-        assert.equal(null, cmdErr);
+        // assert.equal(null, cmdErr);
       });
       client.close();
-    });
+   });
+    

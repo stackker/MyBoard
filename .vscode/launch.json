@@ -4,6 +4,15 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+      {
+        "type": "node",
+        "request": "attach",
+        "name": "Attach by Process ID",
+        "processId": "${command:PickProcess}",
+        "skipFiles": [
+          "<node_internals>/**"
+        ]
+      },
 
 
       {
@@ -17,6 +26,11 @@
           "MONGO_CONNECTION_STRING":"mongodb+srv://sjadmin:welcom@sjdb-5j9un.mongodb.net/test?authSource=admin&replicaSet=SJDB-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
         }
       },
+
+     
+
+
+
       {
         "type": "node",
         "request": "launch",

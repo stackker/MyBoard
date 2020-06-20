@@ -1,0 +1,85 @@
+fieldset {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 500px;
+  padding-right: 100px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#idEmail {
+  margin-left: 35px;
+}
+
+#idPass {
+  margin-left: 5px;
+}
+
+.registerButton {
+    height: 32px;
+    width: 128px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+    position: absolute; 
+    right: 645px;
+}
+
+.registerButton:hover {
+    background-color: green;
+    color: white;
+  }
+
+.loginButton {
+  height: 32px;
+    width: 128px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+    position: absolute; 
+    right: 645px;
+  }
+
+.loginButton:hover{
+  background-color: green;
+  color: white;
+}
+
+.loginButtonTop {
+  height: 32px;
+    width: 128px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+    position: absolute; 
+    right: 650px;
+  }
+
+.loginButtonTop:hover{
+  background-color: green;
+  color: white;
+}
+
+.loginButton2 {
+  height: 32px;
+    width: 128px;
+    background: #9ccb3b;
+    color: #ffffff;
+    font-weight: 700;
+    border-style: double;
+    border-radius: 50px;
+    position: absolute; 
+    right: 650px;
+  }
+
+.loginButton2:hover{
+  background-color: green;
+  color: white;
+}
